@@ -23,14 +23,29 @@ export class PlaylistService {
 
     async create(dto: CreatePlaylistDTO, req){
         try {
-            const user = await this.usersRepository.findOneBy({email: dto.userId.email})
+            const user = await this.usersRepository.findOneBy({id: dto.userId})
+            if(!user){
+                throw new HttpException('User with this id not found', HttpStatus.NOT_FOUND)
+            }
             const playlist = await this.playlistRepository.save({
                 ...dto,
-                userId: req.user.id
+                songs: dto[0].songs,
+                userId: dto.userId
             })
             return playlist
         } catch (error) {
             throw new HttpException('Can not create this playlist', HttpStatus.BAD_REQUEST)
+        }
+    }
+    
+    async addSong(dto: CreatePlaylistDTO, id: number, req){
+        const user = await this.usersRepository.findOneBy({id: dto.userId})
+        const playlist = await this.playlistRepository.findOneBy({id: id})
+        if(!user.id && !playlist.id){
+            throw new HttpException('User dont create to add song to this playlist', HttpStatus.BAD_REQUEST)
+        }
+        if(playlist.songs.indexOf(req.body.songsId) === -1){
+            playlist.songs.push(req.body.songsId)
         }
     }
 }
