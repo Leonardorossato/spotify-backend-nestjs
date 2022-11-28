@@ -8,7 +8,7 @@ import { UsersService } from '../users/users.service';
 import { Users } from 'src/users/entities/users.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Playlist, Users]), UsersModule],
+  imports: [TypeOrmModule.forFeature([Playlist]), UsersModule],
   controllers: [PlaylistController],
   providers: [PlaylistService]
 })
