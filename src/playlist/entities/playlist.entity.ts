@@ -20,7 +20,7 @@ export class Playlist{
     description: string;
 
     @Column({ nullable: true, type: 'varchar', default: [] })
-    songs: string;
+    songs= new Array;
 
     @Column({nullable: false, type: 'varchar'})
     img: string;
