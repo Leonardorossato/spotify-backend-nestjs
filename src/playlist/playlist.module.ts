@@ -5,10 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Playlist } from './entities/playlist.entity';
 import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
+import { Users } from 'src/users/entities/users.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Playlist]), UsersModule],
+  imports: [TypeOrmModule.forFeature([Playlist, Users]), UsersModule],
   controllers: [PlaylistController],
-  providers: [PlaylistService, UsersService]
+  providers: [PlaylistService]
 })
 export class PlaylistModule {}
