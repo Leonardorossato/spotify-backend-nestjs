@@ -11,6 +11,6 @@ import { Users } from 'src/users/entities/users.entity';
   imports: [TypeOrmModule.forFeature([Playlist]), UsersModule],
   controllers: [PlaylistController],
   providers: [PlaylistService, UsersService],
-  exports: [PlaylistService]
+  exports: [PlaylistService],
 })
 export class PlaylistModule {}

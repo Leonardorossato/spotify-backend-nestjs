@@ -7,12 +7,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmAsyncConfig } from './config/ormconfig';
 import { ConfigModule } from '@nestjs/config';
 @Module({
-  imports: [TypeOrmModule.forRootAsync(typeOrmAsyncConfig), 
+  imports: [
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     ConfigModule.forRoot({ isGlobal: true }),
-    UsersModule, 
-    PlaylistModule, 
+    UsersModule,
+    PlaylistModule,
     SongsModule,
-    AuthModule
-  ]
+    AuthModule,
+  ],
 })
 export class AppModule {}

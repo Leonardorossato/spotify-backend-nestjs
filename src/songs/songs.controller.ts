@@ -9,11 +9,11 @@ export class SongsController {
 
   @Get('/all')
   async getAllSongs() {
-    return await this.songsService.all()
+    return await this.songsService.all();
   }
 
   @Post('/create')
-  async createSong(dto: CreateSongDTO){
-    return await this.songsService.create(dto)
+  async createSong(dto: CreateSongDTO) {
+    return await this.songsService.create(dto);
   }
 }

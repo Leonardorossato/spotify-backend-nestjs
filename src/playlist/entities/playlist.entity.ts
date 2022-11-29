@@ -1,27 +1,33 @@
-import { Users } from "../../users/entities/users.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Users } from '../../users/entities/users.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
-export class Playlist{
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Playlist {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({ nullable: false, type: 'varchar', length: 250 })
-    name: string;
+  @Column({ nullable: false, type: 'varchar', length: 250 })
+  name: string;
 
-    @ManyToOne(() => Users)
-    @JoinColumn({name: 'userId' })
-    user?: Users;
+  @ManyToOne(() => Users)
+  @JoinColumn({ name: 'userId' })
+  user?: Users;
 
-    @Column({nullable: false})
-    userId?: number;
+  @Column({ nullable: false })
+  userId?: number;
 
-    @Column({ nullable: false, type: 'varchar', length: 250 })
-    description: string;
+  @Column({ nullable: false, type: 'varchar', length: 250 })
+  description: string;
 
-    @Column({ nullable: true, type: 'varchar', default: [] })
-    songs= new Array;
+  @Column({ nullable: true, type: 'varchar', default: [] })
+  songs = new Array();
 
-    @Column({nullable: false, type: 'varchar'})
-    img: string;
+  @Column({ nullable: false, type: 'varchar' })
+  img: string;
 }

@@ -6,13 +6,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const swaggerConfig = new DocumentBuilder()
-  .setTitle('Spotify Backend Api')
-  .setDescription(
-    'Spotify Backend Api with NestJs, TypeOrm, Postgres and Docker',
-  )
-  .addBearerAuth()
-  .setVersion('1.0')
-  .build();
+    .setTitle('Spotify Backend Api')
+    .setDescription(
+      'Spotify Backend Api with NestJs, TypeOrm, Postgres and Docker',
+    )
+    .addBearerAuth()
+    .setVersion('1.0')
+    .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);

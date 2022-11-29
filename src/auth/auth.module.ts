@@ -13,7 +13,7 @@ import { LocalStrategy } from './strategy/local.strategy';
 @Module({
   imports: [
     UsersModule,
-	  ConfigModule,
+    ConfigModule,
     JwtModule.registerAsync({
       useFactory: async () => ({
         secret: process.env.JWT_SECRET,
@@ -23,8 +23,16 @@ import { LocalStrategy } from './strategy/local.strategy';
         },
       }),
       inject: [ConfigService],
-    })],
+    }),
+  ],
   controllers: [AuthController],
-  providers: [AuthService, CheckPassword, LocalAuthGuard, JwtAuthGuard, JwtStrategy, LocalStrategy]
+  providers: [
+    AuthService,
+    CheckPassword,
+    LocalAuthGuard,
+    JwtAuthGuard,
+    JwtStrategy,
+    LocalStrategy,
+  ],
 })
 export class AuthModule {}

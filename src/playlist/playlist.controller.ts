@@ -8,7 +8,7 @@ export class PlaylistController {
   constructor(private readonly playlistService: PlaylistService) {}
 
   @Post('/create')
-  async create(@Req() req, @Body() dto: CreatePlaylistDTO){
+  async create(@Req() req, @Body() dto: CreatePlaylistDTO) {
     return await this.playlistService.create(dto, req);
   }
 }

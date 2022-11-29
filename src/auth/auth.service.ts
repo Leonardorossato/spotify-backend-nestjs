@@ -1,4 +1,10 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Users } from 'src/users/entities/users.entity';
 import { UsersService } from '../users/users.service';
@@ -6,7 +12,7 @@ import { AuthLoginDTO } from './dto/login.auth.dto';
 import { RegisterAuthDTO } from './dto/register.auth.dto';
 import { JwtInterface } from './interface/jwt.interface';
 import { CheckPassword } from './middleware/check.pass.mid';
-import * as bcrypt from 'bcryptjs'
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
