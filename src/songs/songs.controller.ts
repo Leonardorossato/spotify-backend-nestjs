@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateSongDTO } from './dto/create.song.dto';
 import { SongsService } from './songs.service';
@@ -13,7 +13,7 @@ export class SongsController {
   }
 
   @Post('/create')
-  async createSong(dto: CreateSongDTO) {
+  async createSong(@Body() dto: CreateSongDTO) {
     return await this.songsService.create(dto);
   }
 }
