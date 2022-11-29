@@ -37,6 +37,18 @@ export class UsersService {
     return user;
   }
 
+  async findOneById(id: number){
+    try {
+      const user = await this.usersRepository.findOneBy({id: id})
+      if (!user) {
+        throw new HttpException('User with id no found', HttpStatus.NOT_FOUND)
+      }
+      return user;
+    } catch (error) {
+      throw new HttpException('Error', HttpStatus.BAD_REQUEST)
+    }
+  }
+
   async findOneByEmail(dto: AuthLoginDTO) {
     try {
       const user = await this.usersRepository.findOneBy({ email: dto.email });
