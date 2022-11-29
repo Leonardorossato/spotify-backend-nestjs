@@ -10,7 +10,7 @@ import { Users } from 'src/users/entities/users.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Playlist]), UsersModule],
   controllers: [PlaylistController],
-  providers: [PlaylistService, UsersService],
+  providers: [PlaylistService],
   exports: [PlaylistService],
 })
 export class PlaylistModule {}
