@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Users {
+export class Songs {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -9,17 +9,11 @@ export class Users {
   name: string;
 
   @Column({ nullable: false, type: 'varchar', length: 250, unique: true })
-  email: string;
-
-  @Column({ nullable: false, type: 'varchar', length: 11 })
-  cpf: string;
+  artist: string;
 
   @Column({ nullable: false, type: 'varchar', length: 250 })
-  password: string;
+  img: string;
 
-  @Column({ nullable: true, type: 'varchar' })
-  likedSongs: string;
-
-  @Column({ nullable: true, type: 'varchar', default: [] })
-  playlist: string[] = [];
+  @Column({ nullable: false, type: 'varchar', length: 4 })
+  duration: string;
 }
