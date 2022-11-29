@@ -26,7 +26,7 @@ export class Playlist {
   description: string;
 
   @Column({ nullable: true, type: 'varchar', default: [] })
-  songs = new Array();
+  songs: string[];
 
   @Column({ nullable: false, type: 'varchar' })
   img: string;
