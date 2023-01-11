@@ -76,9 +76,13 @@ export class UsersService {
   async create(dto: CreateUserDTO) {
     try {
       const user = await this.usersModel.create(dto);
+      await user.save();
       return user;
     } catch (error) {
-      throw new NotFoundException('Erro to create a new User');
+      throw new HttpException(
+        'Erro to create a new User',
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 }
