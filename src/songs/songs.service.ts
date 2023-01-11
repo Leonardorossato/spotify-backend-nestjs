@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateSongDTO } from './dto/create.song.dto';
-import { Songs } from './entities/songs.entity';
+import { Songs } from './schema/songs.schema';
 
 @Injectable()
 export class SongsService {
