@@ -5,13 +5,13 @@ export class CreatePlaylistDTO {
   name: string;
 
   @ApiProperty({ nullable: false })
-  userId: number;
+  userId: string;
 
   @ApiProperty({ nullable: false })
   description: string;
 
   @ApiProperty({ nullable: true, type: Array, default: [] })
-  songs: []
+  songs: [];
 
   @ApiProperty({ nullable: false })
   img: string;
