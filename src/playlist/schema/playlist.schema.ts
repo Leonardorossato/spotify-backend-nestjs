@@ -16,8 +16,8 @@ export class Playlist {
   @Prop({ required: false, type: String, minlength: 3 })
   description: string;
 
-  @Prop({ required: true, type: String, default: [] })
-  songs: string[];
+  @Prop({ required: false, type: Array, default: [] })
+  songs: [string];
 
   @Prop({ required: false, type: String })
   img: string;

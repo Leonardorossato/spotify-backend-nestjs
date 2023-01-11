@@ -10,8 +10,8 @@ export class CreatePlaylistDTO {
   @ApiProperty({ nullable: false })
   description: string;
 
-  @ApiProperty({ nullable: true, type: Array, default: [] })
-  songs: [string];
+  @ApiProperty({ nullable: true, type: String, default: [] })
+  songs: string[] = [];
 
   @ApiProperty({ nullable: false })
   img: string;
