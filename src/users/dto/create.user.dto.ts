@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDTO {
-  @ApiProperty({ nullable: false, minLength: 3, maxLength: 250 })
+  @ApiProperty({ nullable: false })
   name: string;
 
   @ApiProperty({ nullable: false })
