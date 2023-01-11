@@ -4,21 +4,22 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { AuthLoginDTO } from 'src/auth/dto/login.auth.dto';
 import { FindOneOptions, Repository } from 'typeorm';
 import { CreateUserDTO } from './dto/create.user.dto';
-import { Users } from './entities/users.entity';
+import { Users } from './schema/users.schema';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(Users) private usersRepository: Repository<Users>,
+    @InjectModel(Users.name) private readonly usersModel: Model<Users>,
   ) {}
 
   async all(): Promise<Users[]> {
     try {
-      const users = await this.usersRepository.find();
+      const users = await this.usersModel.find();
       return users;
     } catch (error) {
       throw new HttpException('Users not found', HttpStatus.NOT_FOUND);
@@ -26,7 +27,7 @@ export class UsersService {
   }
 
   async findOne(where: FindOneOptions<Users>): Promise<Users> {
-    const user = this.usersRepository.findOne(where);
+    const user = this.usersModel.findOne(where);
 
     if (!user) {
       throw new NotFoundException(
@@ -37,21 +38,21 @@ export class UsersService {
     return user;
   }
 
-  async findOneById(id: number){
+  async findOneById(id: number) {
     try {
-      const user = await this.usersRepository.findOneBy({id: id})
+      const user = await this.usersModel.findById({ _id: id });
       if (!user) {
-        throw new HttpException('User with id no found', HttpStatus.NOT_FOUND)
+        throw new HttpException('User with id no found', HttpStatus.NOT_FOUND);
       }
       return user;
     } catch (error) {
-      throw new HttpException('Error', HttpStatus.BAD_REQUEST)
+      throw new HttpException('Error', HttpStatus.BAD_REQUEST);
     }
   }
 
   async findOneByEmail(dto: AuthLoginDTO) {
     try {
-      const user = await this.usersRepository.findOneBy({ email: dto.email });
+      const user = await this.usersModel.findOne({ email: dto.email });
       return user;
     } catch (error) {
       throw new NotFoundException('Email não encontrado');
@@ -60,7 +61,7 @@ export class UsersService {
 
   async getByEmail(dto: CreateUserDTO) {
     try {
-      const user = await this.usersRepository.findOneBy({ email: dto.email });
+      const user = await this.usersModel.findOne({ email: dto.email });
       if (user) {
         return user;
       }
@@ -75,9 +76,10 @@ export class UsersService {
 
   async create(dto: CreateUserDTO) {
     try {
-      const user = await this.usersRepository.save({
+      const user = await this.usersModel.create({
         ...dto,
       });
+      await user.save();
       return user;
     } catch (error) {
       throw new NotFoundException('Erro to create a new User');
