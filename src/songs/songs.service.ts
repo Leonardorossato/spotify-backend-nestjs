@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Repository } from 'typeorm';
 import { CreateSongDTO } from './dto/create.song.dto';
 import { Songs } from './schema/songs.schema';
 
