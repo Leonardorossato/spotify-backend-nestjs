@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { Repository } from 'typeorm';
 import { CreateSongDTO } from './dto/create.song.dto';
 import { Songs } from './schema/songs.schema';
@@ -7,12 +8,12 @@ import { Songs } from './schema/songs.schema';
 @Injectable()
 export class SongsService {
   constructor(
-    @InjectRepository(Songs) private songsRepository: Repository<Songs>,
+    @InjectModel(Songs.name) private readonly songsModel: Model<Songs>,
   ) {}
 
   async all(): Promise<Songs[]> {
     try {
-      const songs = await this.songsRepository.find();
+      const songs = await this.songsModel.find();
       return songs;
     } catch (error) {
       throw new HttpException('Songs not found', HttpStatus.NOT_FOUND);
@@ -21,14 +22,15 @@ export class SongsService {
 
   async create(dto: CreateSongDTO) {
     try {
-      const song = await this.songsRepository.create(dto);
+      const song = await this.songsModel.create(dto);
       if (!song) {
         throw new HttpException(
           'Erro to create this song',
           HttpStatus.BAD_REQUEST,
         );
       }
-      const newSong = await this.songsRepository.save(song);
+      const newSong = await this.songsModel.create(song);
+      await newSong.save();
       return newSong;
     } catch (error) {
       throw new HttpException('Erro', HttpStatus.BAD_GATEWAY);
