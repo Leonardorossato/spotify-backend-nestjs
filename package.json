@@ -1,7 +1,7 @@
 {
   "name": "spotify-backend-nestjs",
   "version": "0.0.1",
-  "description": "Project initialize with NestJs,Postgres, Docker, TyperOrm and Swagger",
+  "description": "Project initialize with NestJs, MongoDB, Docker, Mongoose and Swagger",
   "author": "Leonardo Adami",
   "private": true,
   "license": "UNLICENSED",
