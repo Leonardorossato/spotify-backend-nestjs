@@ -76,9 +76,7 @@ export class UsersService {
 
   async create(dto: CreateUserDTO) {
     try {
-      const user = await this.usersModel.create({
-        ...dto,
-      });
+      const user = await this.usersModel.create(dto);
       await user.save();
       return user;
     } catch (error) {
