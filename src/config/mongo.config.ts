@@ -4,7 +4,7 @@ import {
   MongooseModuleOptions,
 } from '@nestjs/mongoose';
 
-export const typeOrmAsyncConfig: MongooseModuleAsyncOptions = {
+export const mongoAsyncConnection: MongooseModuleAsyncOptions = {
   useFactory: async (config: ConfigService): Promise<MongooseModuleOptions> => {
     return {
       uri: config.get('MONGO_URL'),

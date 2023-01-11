@@ -3,12 +3,12 @@ import { UsersModule } from './users/users.module';
 import { PlaylistModule } from './playlist/playlist.module';
 import { SongsModule } from './songs/songs.module';
 import { AuthModule } from './auth/auth.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmAsyncConfig } from './config/mongo.config';
 import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { mongoAsyncConnection } from './config/mongo.config';
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
+    MongooseModule.forRootAsync(mongoAsyncConnection),
     ConfigModule.forRoot({ isGlobal: true }),
     UsersModule,
     PlaylistModule,
