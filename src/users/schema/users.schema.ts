@@ -26,8 +26,8 @@ export class Users {
   @Prop({ required: false, type: String })
   likedSongs: string;
 
-  @Prop({ required: false, type: String, default: [] })
-  playlist: string[] = [];
+  @Prop({ required: false, type: Array, default: [] })
+  playlist: [string];
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users)
