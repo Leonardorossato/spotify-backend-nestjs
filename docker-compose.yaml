@@ -1,13 +1,11 @@
 version: '3.8'
 
 services:
-  postgres:
+  mongodb:
     container_name: spotify-backend-nestjs
-    image: postgres
-    environment:
-      POSTGRES_DB: spotify-backend-nestjs
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456789
+    image: mongo
+    env_file:
+      - ./.env
     ports:
-      - '5434:5432'
+      - '2456:2147'
     restart: unless-stopped
