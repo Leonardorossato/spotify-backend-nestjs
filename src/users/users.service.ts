@@ -7,7 +7,6 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AuthLoginDTO } from 'src/auth/dto/login.auth.dto';
-import { FindOneOptions, Repository } from 'typeorm';
 import { CreateUserDTO } from './dto/create.user.dto';
 import { Users } from './schema/users.schema';
 
@@ -26,7 +25,7 @@ export class UsersService {
     }
   }
 
-  async findOne(where: FindOneOptions<Users>): Promise<Users> {
+  async findOne(where): Promise<Users> {
     const user = this.usersModel.findOne(where);
 
     if (!user) {
@@ -77,7 +76,6 @@ export class UsersService {
   async create(dto: CreateUserDTO) {
     try {
       const user = await this.usersModel.create(dto);
-      await user.save();
       return user;
     } catch (error) {
       throw new NotFoundException('Erro to create a new User');
