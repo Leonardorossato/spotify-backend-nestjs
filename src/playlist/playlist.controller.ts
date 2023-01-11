@@ -9,12 +9,16 @@ export class PlaylistController {
   constructor(private readonly playlistService: PlaylistService) {}
 
   @Post('/create')
-  async create(@Param('id') id: number, @Body() dto: CreatePlaylistDTO) {
+  async create(@Param('id') id: string, @Body() dto: CreatePlaylistDTO) {
     return await this.playlistService.create(dto, id);
   }
 
   @Put('/addSong')
-  async addSongToPlaylist(@Param('id') id: number, @Body() dto : AddSongPlaylistDTO, @Req() req){
+  async addSongToPlaylist(
+    @Param('id') id: string,
+    @Body() dto: AddSongPlaylistDTO,
+    @Req() req,
+  ) {
     return await this.playlistService.addSong(id, dto, req);
   }
 }
