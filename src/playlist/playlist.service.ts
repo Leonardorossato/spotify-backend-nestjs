@@ -27,7 +27,7 @@ export class PlaylistService {
 
   async create(dto: CreatePlaylistDTO, id: string) {
     try {
-      const user = await this.usersModel.findById({ _id: id });
+      const user = await this.usersModel.findOne({ _id: id });
       if (!user) {
         throw new HttpException(
           'User with this id not found',

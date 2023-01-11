@@ -11,7 +11,7 @@ export class Playlist {
   name: string;
 
   @Prop({ required: false, type: ObjectId, ref: 'users' })
-  userId?: string;
+  userId: string;
 
   @Prop({ required: false, type: String, minlength: 3 })
   description: string;
