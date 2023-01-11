@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Users } from 'src/users/entities/users.entity';
+import { Users } from 'src/users/schema/users.schema';
 import { UsersService } from '../users/users.service';
 import { AuthLoginDTO } from './dto/login.auth.dto';
 import { RegisterAuthDTO } from './dto/register.auth.dto';
@@ -79,7 +79,7 @@ export class AuthService {
   async verifyToken(
     email: string,
     password: string,
-    id: number,
+    id: string,
   ): Promise<string> {
     const payload = {
       email,
