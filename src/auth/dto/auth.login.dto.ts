@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateSongDto {
+export class AuthLoginDto {
   @ApiProperty()
-  name: string;
+  username: string;
 
   @ApiProperty()
-  duration: string;
+  password: string;
 }
