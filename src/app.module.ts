@@ -18,7 +18,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     SongsModule,
     TypeOrmModule.forRootAsync(typeOrmConfig),
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, expandVariables: true }),
     KeycloakConnectModule.registerAsync({
       useExisting: KeycloakService,
       imports: [KeycloakModule],
