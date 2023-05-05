@@ -5,8 +5,8 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'nest-keycloak-connect';
 
 @Controller('songs')
-@ApiTags('Musicas')
 @ApiBearerAuth()
+@ApiTags('Musicas')
 export class SongsController {
   constructor(private readonly songsService: SongsService) {}
 
@@ -16,7 +16,11 @@ export class SongsController {
   }
 
   @Get('/all')
-  @Roles({ roles: [`realm:${process.env.KEYCLOAK_CLIENT_ID}:musician-read`] })
+  @Roles({
+    roles: [
+      `realm:${process.env.KEYCLOAK_CLIENT_ID}-${process.env.KEYCLOAK_CLIENT_MUSCIAN}-read`,
+    ],
+  })
   async findAll() {
     return await this.songsService.findAll();
   }
