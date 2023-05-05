@@ -6,6 +6,15 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       APP_PORT: number;
+      DB_HOST: string;
+      DB_PORT: number;
+      DB_USERNAME: string;
+      DB_PASSWORD: string;
+      DB_DATABASE_NAME: string;
+      KEYCLOAK_URL: string;
+      KEYCLOAK_REALM: string;
+      KEYCLOAK_CLIENT_ID: string;
+      KEYCLOAK_SECRET: string;
     }
   }
 }
