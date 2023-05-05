@@ -12,6 +12,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { typeOrmConfig } from './config/ormconfig';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       useExisting: KeycloakService,
       imports: [KeycloakModule],
     }),
+    AuthModule,
   ],
   providers: [
     {
