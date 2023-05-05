@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { SongsModule } from './songs/songs.module';
 
 @Module({
-  imports: []
+  imports: [SongsModule]
 })
 export class AppModule {}
