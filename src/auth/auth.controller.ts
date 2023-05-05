@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthLoginDto } from './dto/auth.login.dto';
 import { Public } from 'nest-keycloak-connect';
@@ -11,7 +11,7 @@ export class AuthController {
 
   @Public()
   @Post('/login')
-  async login(dto: AuthLoginDto) {
+  async login(@Body() dto: AuthLoginDto) {
     return await this.authService.login(dto);
   }
 }
