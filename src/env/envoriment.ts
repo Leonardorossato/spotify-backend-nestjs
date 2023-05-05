@@ -14,6 +14,9 @@ declare global {
       KEYCLOAK_URL: string;
       KEYCLOAK_REALM: string;
       KEYCLOAK_CLIENT_ID: string;
+      KEYCLOAK_CLIENT_ADMIN: string | undefined | "";
+      KEYCLOAK_CLIENT_USER: string;
+      KEYCLOAK_CLIENT_MUSCIAN: string | undefined | "";
       KEYCLOAK_SECRET: string;
     }
   }
