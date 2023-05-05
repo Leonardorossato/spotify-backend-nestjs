@@ -1,26 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateSongDto } from './dto/create-song.dto';
-import { UpdateSongDto } from './dto/update-song.dto';
-
+import { InjectRepository } from '@nestjs/typeorm';
+import { Song } from './entities/song.entity';
+import { Repository } from 'typeorm';
 @Injectable()
 export class SongsService {
-  create(createSongDto: CreateSongDto) {
-    return 'This action adds a new song';
+  constructor(
+    @InjectRepository(Song) private readonly songRepository: Repository<Song>,
+  ) {}
+
+  async create(dto: CreateSongDto) {
+    try {
+      const song = await this.songRepository.create(dto);
+      await this.songRepository.save(song);
+      return song;
+    } catch (error) {
+      throw new HttpException('Erro ao criar a msucia', HttpStatus.BAD_REQUEST);
+    }
   }
 
-  findAll() {
-    return `This action returns all songs`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} song`;
-  }
-
-  update(id: number, updateSongDto: UpdateSongDto) {
-    return `This action updates a #${id} song`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} song`;
+  async findAll() {
+    try {
+      const song = await this.songRepository.find();
+      return song;
+    } catch (error) {
+      throw new HttpException(
+        'Erro ao procurar todas muscicas',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 }
