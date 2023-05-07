@@ -7,21 +7,22 @@ import {
   ResourceGuard,
   RoleGuard,
 } from 'nest-keycloak-connect';
-import { KeycloakService } from './keycloak/keycloak.service';
+import { KeycloakConfigService } from './keycloak/keycloak.service';
 import { APP_GUARD } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { typeOrmConfig } from './config/ormconfig';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { RequestContextModule } from 'nestjs-request-context';
 
 @Module({
   imports: [
     SongsModule,
     TypeOrmModule.forRootAsync(typeOrmConfig),
-    ConfigModule.forRoot({ isGlobal: true, expandVariables: true }),
+    ConfigModule.forRoot({ isGlobal: true, expandVariables: true}),
     KeycloakConnectModule.registerAsync({
-      useExisting: KeycloakService,
-      imports: [KeycloakModule],
+      useExisting: KeycloakConfigService,
+      imports: [KeycloakModule, RequestContextModule],
     }),
     AuthModule,
   ],

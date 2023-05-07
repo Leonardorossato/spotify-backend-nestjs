@@ -7,17 +7,18 @@ import {
 } from 'nest-keycloak-connect';
 
 @Injectable()
-export class KeycloakService implements KeycloakConnectOptionsFactory {
+export class KeycloakConfigService implements KeycloakConnectOptionsFactory {
   createKeycloakConnectOptions(): KeycloakConnectOptions {
     return {
-      authServerUrl: process.env.KEYCLOAK_URL,
-      realm: process.env.KEYCLOAK_REALM,
-      clientId: process.env.KEYCLOAK_CLIENT_ID,
-      secret: process.env.KEYCLOAK_SECRET,
+      authServerUrl: process.env.KEYCLOAK_URL ?? 'http://localhost:8080',
+      realm: process.env.KEYCLOAK_REALM ?? 'master',
+      clientId: process.env.KEYCLOAK_CLIENT_ID ?? 'my-nestjs-app',
+      secret: process.env.KEYCLOAK_SECRET ?? 'secret',
+      verifyTokenAudience: false,
       policyEnforcement: PolicyEnforcementMode.PERMISSIVE,
       tokenValidation: TokenValidation.ONLINE,
-      'bearer-only': true,
       public: true,
+      'bearer-only': true,
     };
   }
 }
