@@ -15,7 +15,7 @@ export class SongsService {
       await this.songRepository.save(song);
       return song;
     } catch (error) {
-      throw new HttpException('Erro ao criar a msucia', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Error to create a song', HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -25,7 +25,7 @@ export class SongsService {
       return song;
     } catch (error) {
       throw new HttpException(
-        'Erro ao procurar todas muscicas',
+        'Error to find all songs: ',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
