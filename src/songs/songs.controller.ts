@@ -20,7 +20,11 @@ export class SongsController {
   }
 
   @Get('/all')
-  @Roles({ roles: [`realm:${process.env.KEYCLOAK_CLIENT_ID}-user-read`] })
+  @Roles({
+    roles: [
+      `realm:${process.env.KEYCLOAK_CLIENT_ID}-${process.env.KEYCLOAK_SUBGROUP_MUSICIAN_ID}-read`,
+    ],
+  })
   async findAll() {
     return await this.songsService.findAll();
   }
