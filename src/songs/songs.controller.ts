@@ -13,7 +13,9 @@ export class SongsController {
 
   @Post('/create')
   @Roles({
-    roles: [`realm:${process.env.KEYCLOAK_CLIENT_ID}-user-create`],
+    roles: [
+      `realm:${process.env.KEYCLOAK_CLIENT_ID}-${process.env.KEYCLOAK_SUBGROUP_MUSICIAN_ID}-create`,
+    ],
   })
   create(@Body() createSongDto: CreateSongDto) {
     return this.songsService.create(createSongDto);
