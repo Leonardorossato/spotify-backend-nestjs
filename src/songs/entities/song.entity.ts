@@ -9,5 +9,8 @@ export class Song {
   name!: string;
 
   @Column()
+  artist!: string;
+
+  @Column()
   duration!: string;
 }

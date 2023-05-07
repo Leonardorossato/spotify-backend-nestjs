@@ -23,7 +23,7 @@ export class AuthService {
       );
       return login.data
     } catch (error) {
-      throw new HttpException('Credenciais invalidas', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Invalid Credentials', HttpStatus.BAD_REQUEST);
     }
   }
 }
