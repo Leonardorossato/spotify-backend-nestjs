@@ -24,5 +24,5 @@ export class Playlist {
   songId!: number;
 
   @CreateDateColumn()
-  createdAt!: Date;
+  createdAt?: Date;
 }
