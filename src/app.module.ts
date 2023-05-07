@@ -14,6 +14,7 @@ import { typeOrmConfig } from './config/ormconfig';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { RequestContextModule } from 'nestjs-request-context';
+import { PlaylistModule } from './playlist/playlist.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { RequestContextModule } from 'nestjs-request-context';
       imports: [KeycloakModule, RequestContextModule],
     }),
     AuthModule,
+    PlaylistModule,
   ],
   providers: [
     {
