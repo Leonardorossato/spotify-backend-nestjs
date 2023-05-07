@@ -5,5 +5,8 @@ export class CreateSongDto {
   name!: string;
 
   @ApiProperty()
+  artist!: string;
+
+  @ApiProperty()
   duration!: string;
 }
