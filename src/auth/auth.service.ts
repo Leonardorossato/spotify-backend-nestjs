@@ -21,7 +21,7 @@ export class AuthService {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         },
       );
-      return { access_token: login.data.access_token };
+      return login.data
     } catch (error) {
       throw new HttpException('Credenciais invalidas', HttpStatus.BAD_REQUEST);
     }
