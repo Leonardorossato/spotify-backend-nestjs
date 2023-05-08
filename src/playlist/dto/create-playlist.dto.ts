@@ -4,6 +4,6 @@ export class CreatePlaylistDto {
   @ApiProperty()
   name!: string;
 
-  @ApiProperty({nullable: false})
-  songId!: number[];
+  @ApiProperty()
+  songId!: number;
 }
