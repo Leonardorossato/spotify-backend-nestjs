@@ -5,6 +5,7 @@ import {
   Entity,
   JoinColumn,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -16,11 +17,7 @@ export class Playlist {
   @Column({ type: 'varchar' })
   name!: string;
 
-  @ManyToMany(() => Song, (song) => song.id)
-  @JoinColumn({ name: 'songId' })
-  song!: number[];
-
-  @Column({ nullable: false })
+  @Column()
   songId!: number;
 
   @CreateDateColumn()
