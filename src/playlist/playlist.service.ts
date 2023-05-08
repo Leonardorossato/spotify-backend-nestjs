@@ -17,7 +17,7 @@ export class PlaylistService {
 
   async create(dto: CreatePlaylistDto) {
     try {
-      const playlist = await this.songRepository.create(dto)
+      const playlist = await this.playlistRepository.create(dto)
       await this.playlistRepository.save(playlist)
       return playlist
     } catch (error) {}
